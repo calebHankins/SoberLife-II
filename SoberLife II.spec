@@ -2,10 +2,8 @@
 
 block_cipher = None
 
-assets = [
-    ('Sober_Life_II/assets/*', 'Sober_Life_II/assets'),
-    ('README.md', '.')
-]
+# Include our assets in the final bundle
+assets = [('Sober_Life_II/assets/*', 'Sober_Life_II/assets')]
 
 a = Analysis(['SoberLife II.py'],
              binaries=[],

@@ -1,6 +1,3 @@
-# import Sober_Life_II
-
-
 def main():
 
     print("This is the main routine.")

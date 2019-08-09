@@ -31,7 +31,7 @@ setup(
     entry_points={
         'gui_scripts': [
         # 'console_scripts': [
-            'SoberLifeII = Sober_Life_II.__main__:main',
+            'SoberLife II = Sober_Life_II.__main__:main',
         ],
     },
 )
