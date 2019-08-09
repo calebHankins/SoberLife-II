@@ -231,7 +231,6 @@ def instructions():
     line.append(
         "   . . . or if any activity attains a stress level greater than five.")
     line.append("      Good luck!!!   (Press any key to continue)")
-    endloop = 0
     while True:
         textask = font.render(
             "Welcome to Sober Life.  Do you want instructions?", True, (100, 100, 100))
