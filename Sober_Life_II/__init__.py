@@ -3,8 +3,6 @@
 import sys
 import random
 from pkg_resources import resource_filename
-# ASSET_PATH = resource_string(__name__, 'assets')
-# print("ASSET_PATH:" + ASSET_PATH)
 import pygame
 pygame.init()
 # font = pygame.font.Font(None, 48) # This has some portability issues
