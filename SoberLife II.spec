@@ -5,7 +5,6 @@ block_cipher = None
 assets = [
     ('Sober_Life_II/assets/*', 'assets'),
     ('Sober_Life_II/assets/*', 'Sober_Life_II/assets'),
-    # ('sfx/*.mp3', 'sfx'),
     ('README.md', '.')
 ]
 
@@ -27,11 +26,13 @@ exe = EXE(pyz,
           [],
           exclude_binaries=True,
           name='SoberLife II',
-          debug=False,
+          debug=True,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
-          console=True)
+          console=True,
+          icon='Sober_Life_II/assets/icon.ico'
+          )
 coll = COLLECT(exe,
                a.binaries,
                a.zipfiles,

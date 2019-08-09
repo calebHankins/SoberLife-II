@@ -7,7 +7,8 @@ from pkg_resources import resource_filename
 # print("ASSET_PATH:" + ASSET_PATH)
 import pygame
 pygame.init()
-font = pygame.font.Font(None, 48)
+# font = pygame.font.Font(None, 48) # This has some portability issues
+font = pygame.font.Font(resource_filename(__name__, "/assets/FreeSans.ttf"), 48)
 
 
 def findpos(funcx, funcy):  # converts location mouse to square on board
