@@ -2,6 +2,9 @@
 
 import sys
 import random
+from pkg_resources import resource_filename
+# ASSET_PATH = resource_string(__name__, 'assets')
+# print("ASSET_PATH:" + ASSET_PATH)
 import pygame
 pygame.init()
 font = pygame.font.Font(None, 48)
@@ -215,7 +218,7 @@ def checkaround(funcxx, funcyy, funcgrid2):
 
 def instructions():
     screen.fill((100, 200, 200))
-    yesno = pygame.image.load("./assets/yesno.png")
+    yesno = pygame.image.load(resource_filename(__name__, "/assets/yesno.png"))
     line = []
     line.append(
         "You are trying to make it through the day without getting too stressed.")
@@ -260,7 +263,7 @@ def instructions():
 
 def difficultysetting():
     screen.fill((100, 200, 200))
-    stressbuttons = pygame.image.load("./assets/stressbuttons.png")
+    stressbuttons = pygame.image.load(resource_filename(__name__, "/assets/stressbuttons.png"))
     while True:
         settingask = font.render(
             "Click on the sort of day you will have.", True, (100, 100, 100))
@@ -289,27 +292,27 @@ instructions()
 difset = difficultysetting()
 screen.fill((100, 200, 200))
 pictures = []
-emptysquare = pygame.image.load("./assets/emptysquare.png")
+emptysquare = pygame.image.load(resource_filename(__name__, "/assets/emptysquare.png"))
 pictures.append(emptysquare)  # pictures[0] is empty square
-jobstress = pygame.image.load("./assets/jobstress.png")  # pictures[1] is job
+jobstress = pygame.image.load(resource_filename(__name__, "/assets/jobstress.png"))  # pictures[1] is job
 pictures.append(jobstress)
 familystress = pygame.image.load(
-    "./assets/familystress.png")  # pictures[2] is family
+    resource_filename(__name__, "/assets/familystress.png"))  # pictures[2] is family
 pictures.append(familystress)
 healthstress = pygame.image.load(
-    "./assets/healthstress.png")   # pictures[3] is health
+    resource_filename(__name__, "/assets/healthstress.png"))   # pictures[3] is health
 pictures.append(healthstress)
 exercise = pygame.image.load(
-    "./assets/exercise.png")   # pictures[4] is exercise
+    resource_filename(__name__, "/assets/exercise.png"))   # pictures[4] is exercise
 pictures.append(exercise)
 meditation = pygame.image.load(
-    "./assets/meditation.png")  # pictures[5] is meditation
+    resource_filename(__name__, "/assets/meditation.png"))  # pictures[5] is meditation
 pictures.append(meditation)
-banner = pygame.image.load("./assets/banner.png")
-quitbutton = pygame.image.load("./assets/quitbutton.png")
-stressbar = pygame.image.load("./assets/stressbar.png")
-stressbit = pygame.image.load("./assets/stressbit.png")
-stressface = pygame.image.load("./assets/stressface.png")
+banner = pygame.image.load(resource_filename(__name__, "/assets/banner.png"))
+quitbutton = pygame.image.load(resource_filename(__name__, "/assets/quitbutton.png"))
+stressbar = pygame.image.load(resource_filename(__name__, "/assets/stressbar.png"))
+stressbit = pygame.image.load(resource_filename(__name__, "/assets/stressbit.png"))
+stressface = pygame.image.load(resource_filename(__name__, "/assets/stressface.png"))
 
 grid = []  # sets up grid  10 x 3
 x = 0
