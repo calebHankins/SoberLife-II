@@ -17,16 +17,17 @@ setup(
     options={'py2exe': {'bundle_files': 1}},
     zipfile=None,
     windows=[{
-        "script": "SoberLifeII-script.pyw",
+        # "script": "SoberLifeII-script.pyw",
         "icon_resources": [(1, "./assets/icon.ico")],
-        "dest_base":"SoberLifeII"
+        # "dest_base":"SoberLifeII"
     }],
     packages=find_packages(),
     install_requires=requirements,
     version='0.0.1',
     entry_points={
-        'gui_scripts': [
-            'SoberLifeII = SoberLifeII:main',
-        ],
+        # 'gui_scripts': [
+            'console_scripts': [
+                'SoberLifeII = __main__:main',
+            ],
     },
 )

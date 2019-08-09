@@ -1,9 +1,8 @@
 #  Sober Life--written by Bruce Baskir July 2019
 
 import sys
-import pygame
 import random
-import time
+import pygame
 pygame.init()
 font = pygame.font.Font(None, 48)
 
