@@ -3,7 +3,6 @@
 block_cipher = None
 
 assets = [
-    ('Sober_Life_II/assets/*', 'assets'),
     ('Sober_Life_II/assets/*', 'Sober_Life_II/assets'),
     ('README.md', '.')
 ]
@@ -26,11 +25,11 @@ exe = EXE(pyz,
           [],
           exclude_binaries=True,
           name='SoberLife II',
-          debug=True,
+          debug=False,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
-          console=True,
+          console=False,
           icon='Sober_Life_II/assets/icon.ico'
           )
 coll = COLLECT(exe,
