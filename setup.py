@@ -17,7 +17,7 @@ setup(
     packages=find_packages(),
     install_requires=requirements,
     version='0.0.1',
-    entry_points={
+    entry_points={ 
         'gui_scripts': [
             'SoberLifeII = SoberLifeII:main',
         ],

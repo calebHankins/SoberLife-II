@@ -255,9 +255,9 @@ def difficultysetting():
                         stresscards = [12,22,30,40]
                     else:
                         stresscards = [10,20,30,40]
-                    return stresscards
+                    return stresscards   
                             
-
+ 
             
         
     
