@@ -17,9 +17,9 @@ setup(
     packages=find_packages(),
     install_requires=requirements,
     version='0.0.1',
-    # entry_points={
-    #     'console_scripts': [
-    #         'todo',
-    #     ],
-    # },
+    entry_points={
+        'gui_scripts': [
+            'SoberLifeII = SoberLifeII:main',
+        ],
+    },
 )

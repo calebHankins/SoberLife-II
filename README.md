@@ -28,7 +28,7 @@ Dependencies can be manually installed or installed automatically via pip and th
 
 ```powershell
 # Install project dependencies
-pip install --user -r requirements.txt
+pip install .
 ```
 
 # Instructions
@@ -36,6 +36,6 @@ pip install --user -r requirements.txt
 ## Start Game
 
 ```powershell
-# Start game
-python '.\SoberLife II.py'
+# Start game via CLI
+SoberLifeII
 ```

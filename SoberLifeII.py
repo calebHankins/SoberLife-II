@@ -196,7 +196,7 @@ def checkaround(funcxx,funcyy,funcgrid2):
 
 def instructions():
     screen.fill((100,200,200))
-    yesno=pygame.image.load("yesno.png")
+    yesno=pygame.image.load("./assets/yesno.png")
     line = []
     line.append("You are trying to make it through the day without getting too stressed.")
     line.append("Click the space on the activity on which you wish to start.")
@@ -235,7 +235,7 @@ def instructions():
 
 def difficultysetting():
     screen.fill((100,200,200))
-    stressbuttons=pygame.image.load("stressbuttons.png")
+    stressbuttons=pygame.image.load("./assets/stressbuttons.png")
     while True:
         settingask = font.render("Click on the sort of day you will have.",True,(100,100,100))
         screen.blit(settingask,(300,300))
@@ -269,23 +269,23 @@ instructions()
 difset = difficultysetting()
 screen.fill((100,200,200))
 pictures=[]
-emptysquare=pygame.image.load("emptysquare.png")
+emptysquare=pygame.image.load("./assets/emptysquare.png")
 pictures.append(emptysquare)    #  pictures[0] is empty square
-jobstress=pygame.image.load("jobstress.png")  # pictures[1] is job
+jobstress=pygame.image.load("./assets/jobstress.png")  # pictures[1] is job
 pictures.append(jobstress)
-familystress=pygame.image.load("familystress.png")  # pictures[2] is family
+familystress=pygame.image.load("./assets/familystress.png")  # pictures[2] is family
 pictures.append(familystress)
-healthstress=pygame.image.load("healthstress.png")   # pictures[3] is health
+healthstress=pygame.image.load("./assets/healthstress.png")   # pictures[3] is health
 pictures.append(healthstress)
-exercise=pygame.image.load("exercise.png")   # pictures[4] is exercise
+exercise=pygame.image.load("./assets/exercise.png")   # pictures[4] is exercise
 pictures.append(exercise)
-meditation=pygame.image.load("meditation.png")  # pictures[5] is meditation
+meditation=pygame.image.load("./assets/meditation.png")  # pictures[5] is meditation
 pictures.append(meditation)
-banner=pygame.image.load("banner.png")
-quitbutton=pygame.image.load("quitbutton.png")
-stressbar=pygame.image.load("stressbar.png")
-stressbit=pygame.image.load("stressbit.png")
-stressface=pygame.image.load("stressface.png")
+banner=pygame.image.load("./assets/banner.png")
+quitbutton=pygame.image.load("./assets/quitbutton.png")
+stressbar=pygame.image.load("./assets/stressbar.png")
+stressbit=pygame.image.load("./assets/stressbit.png")
+stressface=pygame.image.load("./assets/stressface.png")
 
 grid = []     #sets up grid  10 x 3
 x = 0
