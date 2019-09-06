@@ -40,7 +40,7 @@ The following commands should be executed from the same folder in which this REA
 ## Windows
 
 ### Install Python
-Python can be installed from [python.org](https://www.python.org/downloads/) or using the [Chocolatey](https://chocolatey.org/) package manager. **This will need to sync up with the version of [pygame](https://www.pygame.org) that you plan on using!**. The follwoing instructions all assume that [python3 is on your PATH](https://www.pygame.org/wiki/GettingStarted#Windows%20installation).
+Python can be installed from [python.org](https://www.python.org/downloads/) or using the [Chocolatey](https://chocolatey.org/) package manager. **This will need to sync up with the version of [pygame](https://www.pygame.org) that you plan on using!**. The following instructions all assume that [python3 is on your PATH](https://www.pygame.org/wiki/GettingStarted#Windows%20installation).
 
 If you have [Chocolatey](https://chocolatey.org) installed, you can use the [following command to install Python](https://chocolatey.org/packages/python/).
 
