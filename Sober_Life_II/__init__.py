@@ -262,7 +262,7 @@ async def instructions():
                         while True:
                             await asyncio.sleep(0)
                             for event in pygame.event.get():
-                                if event.type == pygame.KEYDOWN:
+                                if event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN:
                                     return
 
 
@@ -297,6 +297,7 @@ async def main():
     global screen
     global stressface
     screen = pygame.display.set_mode((1500, 800))
+    pygame.display.set_caption("SoberLife-II")
     while True:
         await instructions()
         difset = await difficultysetting()
@@ -459,7 +460,7 @@ async def main():
             pygame.display.flip()
             await asyncio.sleep(0)
             for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN:
+                if event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN:
                     if sys.platform == "emscripten":
                         end_loop = False
                     else:
