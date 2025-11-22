@@ -297,160 +297,173 @@ async def main():
     global screen
     global stressface
     screen = pygame.display.set_mode((1500, 800))
-    await instructions()
-    difset = await difficultysetting()
-    screen.fill((100, 200, 200))
-    pictures = []
-    screen.fill((100, 200, 200))
-    pictures = []
-    emptysquare = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "emptysquare.png"))
-    pictures.append(emptysquare)  # pictures[0] is empty square
-    jobstress = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "jobstress.png"))  # pictures[1] is job
-    pictures.append(jobstress)
-    familystress = pygame.image.load(
-        os.path.join(os.path.dirname(__file__), "assets", "familystress.png"))  # pictures[2] is family
-    pictures.append(familystress)
-    healthstress = pygame.image.load(
-        os.path.join(os.path.dirname(__file__), "assets", "healthstress.png"))   # pictures[3] is health
-    pictures.append(healthstress)
-    exercise = pygame.image.load(
-        os.path.join(os.path.dirname(__file__), "assets", "exercise.png"))   # pictures[4] is exercise
-    pictures.append(exercise)
-    meditation = pygame.image.load(
-        os.path.join(os.path.dirname(__file__), "assets", "meditation.png"))  # pictures[5] is meditation
-    pictures.append(meditation)
-    banner = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "banner.png"))
-    quitbutton = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "quitbutton.png"))
-    stressbar = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "stressbar.png"))
-    stressbit = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "stressbit.png"))
-    stressface = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "stressface.png"))
-
-    grid = []  # sets up grid  10 x 3
-    x = 0
-    while x < 10:
-        grid.append([0]*3)
-        x = x+1
-    x = 0
-    while x < 10:
-        y = 0
-        while y < 3:
-            if (x+y) % 2 == 1:
-                grid[x][y] = 1
-            y = y+1
-        x = x+1
-    y = 0  # sets up starting position
-    while y < 3:
-        x = 0
-        while x < 9:
-            if grid[x][y] == 1:
-                screen.blit(pictures[0], (x*150, y*200))
-            x = x+1
-        y = y+1
-
-    theboard = shuffleboard()
-
-    soberdeck = makedeck(difset)
-    soberdeck = shuffledeck(soberdeck)
-
-
-    counter = 0
-    y = 0  # sets up starting cards
-    while y < 3:
-        x = 0
-        while x < 9:
-            if grid[x][y] == 1:
-                grid[x][y] = theboard[counter]
-                thecard = cardtype(theboard[counter])
-                screen.blit(pictures[thecard], (x*150+10, y*200+10))
-                counter = counter + 1
-            x = x+1
-        y = y+1
-
-    screen.blit(quitbutton, (1350, 700))  # places quit button
-    screen.blit(stressbar, (1, 650))
-    xcoord = -1  # starting off the board
-    ycoord = -1
-    timenow = 0
-    gameover = 0
-    stresslevel = 0
-    stressfaceprint(grid)
-    pygame.display.flip()
-
-
-    while gameover == 0:
-        pygame.display.flip()
-        await asyncio.sleep(0)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-            elif event.type == pygame.MOUSEBUTTONDOWN:
-                xpos, ypos = pygame.mouse.get_pos()
-                if xpos > 1350 and ypos > 700:  # quit button exits game
-                    gameover = 3  # gameover = 3 means player has quit
-                    break
-                gridx, gridy, posflag = findpos(xpos, ypos)
-                if posflag == 0:
-                    invalidmove = 0
-                    if xcoord > -1:  # already on board
-                        if abs(xcoord - gridx) + abs(ycoord - gridy) == 2 and gridx != xcoord:  # valid move
-                            timenow = timenow + 1
-                            cardpick = cardtype(soberdeck[timenow])
-                            screen.blit(pictures[cardpick],
-                                        (xcoord*150 + 10, ycoord*200 + 10))
-                            grid[xcoord][ycoord] = soberdeck[timenow]
-                        else:
-                            invalidmove = 1
-                    if invalidmove == 0:
-                        screen.blit(banner, (gridx*150, gridy*200))
-                        stresslevel = stresscalc(grid[gridx][gridy], stresslevel)
-                        if stresslevel > 10:
-                            gameover = 2  # gameover = 2 means player has lost
-                            break
-                        # current location of player is considered empty
-                        grid[gridx][gridy] = 0
-                        if timenow > 47:  # end of game due to time expired
-                            gameover = 1  # gameover = 1 means player has won
-                            break
-                        grid, gameover = update(grid)
-                        if gameover == 2:
-                            break
-                        timeprint(timenow, gridx, gridy)
-                        xcoord = gridx
-                        ycoord = gridy
-                        screen.blit(stressbar, (1, 650))
-                        stresscounter = 0
-                        while stresscounter < stresslevel:
-                            screen.blit(stressbit, (stresscounter*100+250, 650))
-                            stresscounter = stresscounter + 1
-
-                        stressfaceprint(grid)
-                        pygame.display.flip()
-
     while True:
-        if gameover == 1:
-            screen.fill((30, 200, 30))
-            text1 = font.render(
-                "You have managed your stress!!!", True, (100, 100, 100))
-            text2 = font.render(
-                "Congratulations, you have won!!!", True, (100, 100, 100))
-        if gameover == 2:
-            screen.fill((150, 0, 0))
-            text1 = font.render(
-                "Your stress levels are too high!!  You have lost", True, (50, 200, 200))
-            text2 = font.render(
-                "Don't worry, you can try again tomorrow.", True, (50, 200, 200))
-        if gameover == 3:
-            screen.fill((50, 50, 50))
-            text1 = font.render(
-                "Sorry you couldn't finish your game.", True, (200, 200, 200))
-            text2 = font.render(
-                "Perhaps you can try again later.", True, (200, 200, 200))
-        text3 = font.render("(Press any key to exit.)", True, (250, 100, 250))
-        screen.blit(text1, (300, 200))
-        screen.blit(text2, (300, 400))
-        screen.blit(text3, (450, 650))
+        await instructions()
+        difset = await difficultysetting()
+        screen.fill((100, 200, 200))
+        pictures = []
+        screen.fill((100, 200, 200))
+        pictures = []
+        emptysquare = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "emptysquare.png"))
+        pictures.append(emptysquare)  # pictures[0] is empty square
+        jobstress = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "jobstress.png"))  # pictures[1] is job
+        pictures.append(jobstress)
+        familystress = pygame.image.load(
+            os.path.join(os.path.dirname(__file__), "assets", "familystress.png"))  # pictures[2] is family
+        pictures.append(familystress)
+        healthstress = pygame.image.load(
+            os.path.join(os.path.dirname(__file__), "assets", "healthstress.png"))   # pictures[3] is health
+        pictures.append(healthstress)
+        exercise = pygame.image.load(
+            os.path.join(os.path.dirname(__file__), "assets", "exercise.png"))   # pictures[4] is exercise
+        pictures.append(exercise)
+        meditation = pygame.image.load(
+            os.path.join(os.path.dirname(__file__), "assets", "meditation.png"))  # pictures[5] is meditation
+        pictures.append(meditation)
+        banner = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "banner.png"))
+        quitbutton = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "quitbutton.png"))
+        stressbar = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "stressbar.png"))
+        stressbit = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "stressbit.png"))
+        stressface = pygame.image.load(os.path.join(os.path.dirname(__file__), "assets", "stressface.png"))
+
+        grid = []  # sets up grid  10 x 3
+        x = 0
+        while x < 10:
+            grid.append([0]*3)
+            x = x+1
+        x = 0
+        while x < 10:
+            y = 0
+            while y < 3:
+                if (x+y) % 2 == 1:
+                    grid[x][y] = 1
+                y = y+1
+            x = x+1
+        y = 0  # sets up starting position
+        while y < 3:
+            x = 0
+            while x < 9:
+                if grid[x][y] == 1:
+                    screen.blit(pictures[0], (x*150, y*200))
+                x = x+1
+            y = y+1
+
+        theboard = shuffleboard()
+
+        soberdeck = makedeck(difset)
+        soberdeck = shuffledeck(soberdeck)
+
+
+        counter = 0
+        y = 0  # sets up starting cards
+        while y < 3:
+            x = 0
+            while x < 9:
+                if grid[x][y] == 1:
+                    grid[x][y] = theboard[counter]
+                    thecard = cardtype(theboard[counter])
+                    screen.blit(pictures[thecard], (x*150+10, y*200+10))
+                    counter = counter + 1
+                x = x+1
+            y = y+1
+
+        screen.blit(quitbutton, (1350, 700))  # places quit button
+        screen.blit(stressbar, (1, 650))
+        xcoord = -1  # starting off the board
+        ycoord = -1
+        timenow = 0
+        gameover = 0
+        stresslevel = 0
+        stressfaceprint(grid)
         pygame.display.flip()
-        await asyncio.sleep(0)
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                sys.exit()
+
+
+        while gameover == 0:
+            pygame.display.flip()
+            await asyncio.sleep(0)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    sys.exit()
+                elif event.type == pygame.MOUSEBUTTONDOWN:
+                    xpos, ypos = pygame.mouse.get_pos()
+                    if xpos > 1350 and ypos > 700:  # quit button exits game
+                        gameover = 3  # gameover = 3 means player has quit
+                        break
+                    gridx, gridy, posflag = findpos(xpos, ypos)
+                    if posflag == 0:
+                        invalidmove = 0
+                        if xcoord > -1:  # already on board
+                            if abs(xcoord - gridx) + abs(ycoord - gridy) == 2 and gridx != xcoord:  # valid move
+                                timenow = timenow + 1
+                                cardpick = cardtype(soberdeck[timenow])
+                                screen.blit(pictures[cardpick],
+                                            (xcoord*150 + 10, ycoord*200 + 10))
+                                grid[xcoord][ycoord] = soberdeck[timenow]
+                            else:
+                                invalidmove = 1
+                        if invalidmove == 0:
+                            screen.blit(banner, (gridx*150, gridy*200))
+                            stresslevel = stresscalc(grid[gridx][gridy], stresslevel)
+                            if stresslevel > 10:
+                                gameover = 2  # gameover = 2 means player has lost
+                                break
+                            # current location of player is considered empty
+                            grid[gridx][gridy] = 0
+                            if timenow > 47:  # end of game due to time expired
+                                gameover = 1  # gameover = 1 means player has won
+                                break
+                            grid, gameover = update(grid)
+                            if gameover == 2:
+                                break
+                            timeprint(timenow, gridx, gridy)
+                            xcoord = gridx
+                            ycoord = gridy
+                            screen.blit(stressbar, (1, 650))
+                            stresscounter = 0
+                            while stresscounter < stresslevel:
+                                screen.blit(stressbit, (stresscounter*100+250, 650))
+                                stresscounter = stresscounter + 1
+
+                            stressfaceprint(grid)
+                            pygame.display.flip()
+        
+        end_loop = True
+        while end_loop:
+            if gameover == 1:
+                screen.fill((30, 200, 30))
+                text1 = font.render(
+                    "You have managed your stress!!!", True, (100, 100, 100))
+                text2 = font.render(
+                    "Congratulations, you have won!!!", True, (100, 100, 100))
+            if gameover == 2:
+                screen.fill((150, 0, 0))
+                text1 = font.render(
+                    "Your stress levels are too high!!  You have lost", True, (50, 200, 200))
+                text2 = font.render(
+                    "Don't worry, you can try again tomorrow.", True, (50, 200, 200))
+            if gameover == 3:
+                screen.fill((50, 50, 50))
+                text1 = font.render(
+                    "Sorry you couldn't finish your game.", True, (200, 200, 200))
+                text2 = font.render(
+                    "Perhaps you can try again later.", True, (200, 200, 200))
+            
+            if sys.platform == "emscripten":
+                text3 = font.render("(Press any key to Play Again.)", True, (250, 100, 250))
+            else:
+                text3 = font.render("(Press any key to exit.)", True, (250, 100, 250))
+
+            screen.blit(text1, (300, 200))
+            screen.blit(text2, (300, 400))
+            screen.blit(text3, (450, 650))
+            pygame.display.flip()
+            await asyncio.sleep(0)
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    if sys.platform == "emscripten":
+                        end_loop = False
+                    else:
+                        sys.exit()
+        
+        if sys.platform != "emscripten":
+            break
