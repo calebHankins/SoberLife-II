@@ -1,4 +1,4 @@
-```python
+
 #  Sober Life--written by Bruce Baskir July 2019
 
 import sys
@@ -295,6 +295,7 @@ async def difficultysetting():
 
 async def main():
     global screen
+    global stressface
     screen = pygame.display.set_mode((1500, 800))
     await instructions()
     difset = await difficultysetting()
