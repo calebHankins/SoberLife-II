@@ -39,6 +39,26 @@ jobs:
         run: |
           python -m pygbag --build main.py
 
+      - name: Add Cache Busting
+        run: |
+          BUILD_TIME=$(date +%s)
+          echo "Build timestamp: $BUILD_TIME"
+          # Add version parameter to script and asset references in index.html
+          cd build/web
+          if [ -f index.html ]; then
+            # Add cache busting to .js files
+            sed -i "s/\.js\"/\.js?v=$BUILD_TIME\"/g" index.html
+            # Add cache busting to .wasm files
+            sed -i "s/\.wasm\"/\.wasm?v=$BUILD_TIME\"/g" index.html
+            # Add cache busting to .data files
+            sed -i "s/\.data\"/\.data?v=$BUILD_TIME\"/g" index.html
+            # Add cache busting to .zip files
+            sed -i "s/\.zip\"/\.zip?v=$BUILD_TIME\"/g" index.html
+            echo "Cache busting applied successfully"
+          else
+            echo "Warning: index.html not found"
+          fi
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
