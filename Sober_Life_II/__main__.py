@@ -1,6 +1,5 @@
-def main():
-    print("This is the main routine.")
-
+import asyncio
+from . import main as game_main
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(game_main())

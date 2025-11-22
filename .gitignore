@@ -140,7 +140,6 @@ dmypy.json
 *.tar.gz
 /debug
 *.bk
-*.txt
 /exp
 /scratch
 /bin
