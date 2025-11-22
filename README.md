@@ -1,10 +1,10 @@
-# SoberLife II
+# SoberLife-II
 
 A Pygame based board game where you try to make it through the day without getting too stressed!
 
 Written by Bruce Baskir.
 
-- [SoberLife II](#soberlife-ii)
+- [SoberLife-II](#soberlife-ii)
   - [Instructions](#instructions)
   - [🎮 Play the Game](#-play-the-game)
   - [Installation](#installation)
