@@ -56,8 +56,8 @@ Python can be installed from [python.org](https://www.python.org/downloads/) or 
 If you have [Chocolatey](https://chocolatey.org) installed, you can use the [following command to install Python](https://chocolatey.org/packages/python/).
 
 ```powershell
-# Install python 3.6.7
-choco install python --version 3.6.7
+# Install python
+choco install python
 ```
 
 #### Set up Virtual Environment
@@ -81,17 +81,12 @@ Dependencies can be manually installed or installed automatically via pip and th
 pip install .
 ```
 
-You should now have all the dependencies downloaded locally and can run the executable file from the command line.
+You should now have all the dependencies downloaded locally.
+
+You should be able toinvoke the entry point using python.
 
 ```powershell
-# Start game via CLI
-& 'SoberLife II.exe'
-```
-
-You can also invoke the entry point using python.
-
-```powershell
-python '.\SoberLife II.py'
+python ".\SoberLife II.py"
 ```
 
 ## Building
@@ -105,10 +100,10 @@ To create a standalone .exe file (has python and dependencies bundled), first do
 pip install pyinstaller
 
 # Build .exe file in ./dist folder
-pyinstaller 'SoberLife II.spec'
+pyinstaller "SoberLife II.spec"
 
 # Run .exe from command line
-& '.\dist\SoberLife II.exe'
+& ".\dist\SoberLife II.exe"
 ```
 
 '.\dist\SoberLife II.exe' can now be distributed without the need for the end users to install python or any dependencies.
