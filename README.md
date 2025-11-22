@@ -6,6 +6,7 @@ Written by Bruce Baskir.
 
 - [SoberLife II](#soberlife-ii)
   - [Instructions](#instructions)
+  - [🎮 Play the Game](#-play-the-game)
   - [Installation](#installation)
     - [Windows](#windows)
       - [Install Python](#install-python)
@@ -37,6 +38,10 @@ You win by making it through until 8:00pm.
 You lose if your stress level becomes too high or if any activity attains a stress level greater than five.
 
 Good luck!!!
+
+## 🎮 Play the Game
+
+Visit the [live game on github pages](https://calebhankins.github.io/SoberLife-II/)!
 
 ## Installation
 
