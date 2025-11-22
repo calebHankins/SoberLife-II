@@ -297,6 +297,7 @@ async def main():
     global screen
     global stressface
     screen = pygame.display.set_mode((1500, 800))
+    pygame.display.set_caption("SoberLife-II")
     while True:
         await instructions()
         difset = await difficultysetting()
