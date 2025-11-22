@@ -9,9 +9,14 @@ Written by Bruce Baskir.
   - [Installation](#installation)
     - [Windows](#windows)
       - [Install Python](#install-python)
+      - [Set up Virtual Environment](#set-up-virtual-environment)
       - [Install Game](#install-game)
   - [Building](#building)
     - [EXE](#exe)
+    - [Web (pygbag)](#web-pygbag)
+      - [Prerequisites](#prerequisites)
+      - [Run Locally](#run-locally)
+      - [Build for Deployment](#build-for-deployment)
 
 ## Instructions
 
@@ -50,12 +55,24 @@ If you have [Chocolatey](https://chocolatey.org) installed, you can use the [fol
 choco install python --version 3.6.7
 ```
 
+#### Set up Virtual Environment
+
+It is recommended to use a virtual environment to manage dependencies.
+
+```powershell
+# Create virtual environment
+python -m venv .venv
+
+# Activate virtual environment
+.\.venv\Scripts\Activate.ps1
+```
+
 #### Install Game
 
 Dependencies can be manually installed or installed automatically via pip and the [requirements.txt](requirements.txt) file. If this fails, follow the manual install instructions found on [pygame's wiki](https://www.pygame.org/wiki/GettingStarted#Windows%20installation)
 
 ```powershell
-# Install game
+# Install game and dependencies (including pygbag)
 pip install .
 ```
 
@@ -90,3 +107,31 @@ pyinstaller 'SoberLife II.spec'
 ```
 
 '.\dist\SoberLife II.exe' can now be distributed without the need for the end users to install python or any dependencies.
+
+### Web (pygbag)
+
+To run the game in a web browser, we use [pygbag](https://github.com/pygame-web/pygbag).
+
+#### Prerequisites
+
+Ensure you have installed the game and its dependencies as described in the [Installation](#installation) section.
+
+#### Run Locally
+
+To run the game locally in your web browser:
+
+```powershell
+pygbag .
+```
+
+Then open http://localhost:8000 in your browser.
+
+#### Build for Deployment
+
+To build the web version for deployment (e.g., to GitHub Pages or itch.io):
+
+```powershell
+pygbag --build .
+```
+
+The built files will be in the `build/web` directory.
