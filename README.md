@@ -1,19 +1,25 @@
 # SoberLife II
 
-A Pygame based board game where you try to make it through the day without getting too stressed! 
+A Pygame based board game where you try to make it through the day without getting too stressed!
 
 Written by Bruce Baskir.
 
 - [SoberLife II](#soberlife-ii)
-- [Instructions](#instructions)
-- [Installation](#installation)
-  - [Windows](#windows)
-    - [Install Python](#install-python)
-    - [Install Game](#install-game)
-- [Building](#building)
-  - [Windows](#windows-1)
+  - [Instructions](#instructions)
+  - [🎮 Play the Game](#-play-the-game)
+  - [Installation](#installation)
+    - [Windows](#windows)
+      - [Install Python](#install-python)
+      - [Set up Virtual Environment](#set-up-virtual-environment)
+      - [Install Game](#install-game)
+  - [Building](#building)
+    - [EXE](#exe)
+    - [Web (pygbag)](#web-pygbag)
+      - [Prerequisites](#prerequisites)
+      - [Run Locally](#run-locally)
+      - [Build for Deployment](#build-for-deployment)
 
-# Instructions
+## Instructions
 
 You are trying to make it through the day without getting too stressed.
 
@@ -33,56 +39,99 @@ You lose if your stress level becomes too high or if any activity attains a stre
 
 Good luck!!!
 
+## 🎮 Play the Game
 
-# Installation
+Visit the [live game on github pages](https://calebhankins.github.io/SoberLife-II/)!
+
+## Installation
+
 The following commands should be executed from the same folder in which this README file can be found (unless noted otherwise). Shell commands have been written for the [powershell cli](https://en.wikipedia.org/wiki/PowerShell).
 
-## Windows
+### Windows
 
-### Install Python
+#### Install Python
+
 Python can be installed from [python.org](https://www.python.org/downloads/) or using the [Chocolatey](https://chocolatey.org/) package manager. **This will need to sync up with the version of [pygame](https://www.pygame.org) that you plan on using!**. The following instructions all assume that [python3 is on your PATH](https://www.pygame.org/wiki/GettingStarted#Windows%20installation).
 
 If you have [Chocolatey](https://chocolatey.org) installed, you can use the [following command to install Python](https://chocolatey.org/packages/python/).
 
 ```powershell
-# Install python 3.6.7
-choco install python --version 3.6.7
+# Install python
+choco install python
 ```
 
-### Install Game
+#### Set up Virtual Environment
+
+It is recommended to use a virtual environment to manage dependencies.
+
+```powershell
+# Create virtual environment
+python -m venv .venv
+
+# Activate virtual environment
+.\.venv\Scripts\Activate.ps1
+```
+
+#### Install Game
+
 Dependencies can be manually installed or installed automatically via pip and the [requirements.txt](requirements.txt) file. If this fails, follow the manual install instructions found on [pygame's wiki](https://www.pygame.org/wiki/GettingStarted#Windows%20installation)
 
 ```powershell
-# Install game
+# Install game and dependencies (including pygbag)
 pip install .
 ```
 
-You should now have all the dependencies downloaded locally and can run the executable file from the command line.
+You should now have all the dependencies downloaded locally.
+
+You should be able toinvoke the entry point using python.
 
 ```powershell
-# Start game via CLI
-& 'SoberLife II.exe'
+python ".\SoberLife II.py"
 ```
 
-You can also invoke the entry point using python.
+## Building
 
-```powershell
-python '.\SoberLife II.py'
-```
+### EXE
 
-# Building
-## Windows
-To create a standalone .exe file (has python and dependencies bundled), first download and [Install Python](#install-python), then install [pyinstaller](https://pyinstaller.readthedocs.io/en/stable/installation.html). 
+To create a standalone .exe file (has python and dependencies bundled), first download and [Install Python](#install-python), then install [pyinstaller](https://pyinstaller.readthedocs.io/en/stable/installation.html).
 
 ```powershell
 # install pyinstaller
 pip install pyinstaller
 
 # Build .exe file in ./dist folder
-pyinstaller 'SoberLife II.spec'
+pyinstaller "SoberLife II.spec"
 
 # Run .exe from command line
-& '.\dist\SoberLife II.exe'
+& ".\dist\SoberLife II.exe"
 ```
 
-'.\dist\SoberLife II.exe' can now be distributed without the need for the end users to install python or any dependencies. 
+'.\dist\SoberLife II.exe' can now be distributed without the need for the end users to install python or any dependencies.
+
+### Web (pygbag)
+
+To run the game in a web browser, we use [pygbag](https://github.com/pygame-web/pygbag).
+
+#### Prerequisites
+
+Ensure you have installed the game and its dependencies as described in the [Installation](#installation) section.
+
+#### Run Locally
+
+To run the game locally in your web browser:
+
+```powershell
+pygbag .
+```
+
+Then open http://localhost:8000 in your browser.
+
+#### Build for Deployment
+
+To build the web version for deployment (e.g., to GitHub Pages or itch.io):
+
+```powershell
+pygbag --build .
+```
+
+The built files will be in the `build/web` directory.
